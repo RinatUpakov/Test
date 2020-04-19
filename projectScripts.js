@@ -1,10 +1,10 @@
 'use strict';
 
-let money = prompt('Ваш бюджет на месяц?');
+let money = +prompt('Ваш бюджет на месяц?');
 let time = prompt('Введите дату в формате YYYY-MM-DD');
 
 let appData = {
-    money: money,
+    budget: money,
     timeData: time,
     expenses: {},
     optionalExpenses: {},
@@ -12,18 +12,24 @@ let appData = {
     savings: false
 };
 
-let expnss = prompt('Введите обязательную статью расходов в этом месяце');
-let expensesPrice = prompt('Во сколько обойдется ' + expnss + '?');
+for (let i = 0; i < 2; i++) {
+    let a = prompt('Введите обязательную статью расходов  в этом месяце');
+    let b = prompt('Во сколько обойдется ' + a + '?');
 
-appData.expenses[expnss] = expensesPrice;
+    console.log(typeof(a));
+    console.log(typeof(b));
 
-let expnss2 = prompt('Введите ещё одну обязательную статью расходов в этом месяце');
-let expensesPrice2 = prompt('Во сколько обойдется ' + expnss2 + '?');
-
-appData.expenses[expnss2] = expensesPrice2;
-
-alert(`Ваш бюджет на 1 день составляет: ` + `Доходы: ` + money/30 + ', ' + `Расходы: ` + (+expensesPrice + +expensesPrice2)/30);
+    if ((typeof(a)) === 'string' && 
+        (a != null) && 
+        (b != null) && 
+        a.length < 50) {
+        appData.expenses[a] = b;
+        console.log('Done');
+    }
+    else {
+        alert('Oops'); 
+        console.log('Что то  пошло не так');
+    }
+}
 
 console.log(appData);
-console.log(expensesPrice);
-console.log(expensesPrice2);
